@@ -18,7 +18,7 @@ class MovieDetail extends StatelessWidget {
               placeholder: kTransparentImage,
               image: ImageHelper.buildPosterUrlFromPath(
                   item.poster_path, ImageSize.big),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
             Container(
               padding: EdgeInsets.all(8.0),
