@@ -1,5 +1,5 @@
 import 'package:flutter_movies/data/movies_repository.dart';
-import 'package:flutter_movies/domain/movie.dart';
+import 'package:flutter_movies/models/movie.dart';
 
 class GetPopularMovies {
   final _repository = MoviesRepository();

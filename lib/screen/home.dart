@@ -5,9 +5,7 @@ import 'package:flutter_movies/widget/error.dart';
 import 'package:flutter_movies/widget/popular_movies_list.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.title}) : super(key: key);
-
-  final String title;
+  static const routeName = '/';
 
   @override
   _HomeScreenState createState() => _HomeScreenState();

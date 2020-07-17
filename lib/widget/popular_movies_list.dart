@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movies/domain/movie.dart';
+import 'package:flutter_movies/helper/image_helper.dart';
+import 'package:flutter_movies/models/movie.dart';
+import 'package:flutter_movies/screen/movie_detail.dart';
 
 class PopularMoviesList extends StatelessWidget {
   final List<Movie> items;
@@ -10,21 +12,26 @@ class PopularMoviesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate:
-            new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           final item = items[index];
-          return Center(
+          return GridTile(
+              header: Text(item.title),
+              footer: Text(item.release_date),
               child: InkResponse(
-            enableFeedback: true,
-            child: Image.network(
-              'https://image.tmdb.org/t/p/w185${item.poster_path}',
-              fit: BoxFit.cover,
-            ),
-            onTap: () => _openTrailer(),
-          ));
+                enableFeedback: true,
+                child: Image.network(
+                  ImageHelper.buildPosterUrlFromPath(item.poster_path),
+                  fit: BoxFit.cover,
+                ),
+                onTap: () => _openDetail(context, item),
+              ));
         });
   }
 
-  _openTrailer() {}
+  _openDetail(BuildContext context, Movie movie) {
+    Navigator.pushNamed(context, MovieDetailScreen.routeName,
+        arguments: MovieDetailScreenArguments(movie.title, movie.id));
+  }
 }
