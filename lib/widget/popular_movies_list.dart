@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movies/helper/image_helper.dart';
 import 'package:flutter_movies/models/movie.dart';
 import 'package:flutter_movies/screen/movie_detail.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class PopularMoviesList extends StatelessWidget {
   final List<Movie> items;
@@ -21,8 +22,9 @@ class PopularMoviesList extends StatelessWidget {
               footer: Text(item.release_date),
               child: InkResponse(
                 enableFeedback: true,
-                child: Image.network(
-                  ImageHelper.buildPosterUrlFromPath(item.poster_path),
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: ImageHelper.buildPosterUrlFromPath(item.poster_path),
                   fit: BoxFit.cover,
                 ),
                 onTap: () => _openDetail(context, item),
