@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movies/bloc/get_movie.dart';
+import 'package:flutter_movies/bloc/states.dart';
 import 'package:flutter_movies/widget/error.dart';
 import 'package:flutter_movies/widget/loading.dart';
 import 'package:flutter_movies/widget/movie_detail.dart';

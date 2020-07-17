@@ -19,6 +19,11 @@ class MoviesRepository {
     return result.results;
   }
 
+  Future<List<Movie>> getNowPlayingMovies() async {
+    final result = await _fetchResults('now_playing');
+    return result.results;
+  }
+
   Future<Response> _fetchResults(String type) async {
     final response =
         await client.get(Uri.parse("$_baseUrl/movie/$type?api_key=$_apiKey"));
