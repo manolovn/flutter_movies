@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movies/helper/image_helper.dart';
 import 'package:flutter_movies/models/movie.dart';
 import 'package:flutter_movies/screen/movie_detail.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class PopularMoviesList extends StatelessWidget {
   final List<Movie> items;
@@ -18,17 +17,19 @@ class PopularMoviesList extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           final item = items[index];
           return GridTile(
-              header: Text(item.title),
-              footer: Text(item.release_date),
-              child: InkResponse(
-                enableFeedback: true,
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: ImageHelper.buildPosterUrlFromPath(item.poster_path),
-                  fit: BoxFit.cover,
-                ),
+            footer: new GridTileBar(
+              title: new Text(item.title),
+              backgroundColor: Colors.black54,
+            ),
+            child: Ink.image(
+              image: NetworkImage(
+                  ImageHelper.buildPosterUrlFromPath(item.poster_path)),
+              fit: BoxFit.cover,
+              child: InkWell(
                 onTap: () => _openDetail(context, item),
-              ));
+              ),
+            ),
+          );
         });
   }
 
