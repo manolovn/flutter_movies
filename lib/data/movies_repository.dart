@@ -1,13 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_movies/domain/response.dart';
+import 'package:flutter_movies/helper/config.dart';
 import 'package:flutter_movies/models/movie.dart';
 import 'package:http/http.dart' as http;
 
 class MoviesRepository {
   final http.Client client = http.Client();
-  final _apiKey = '2df68610c528b01cd32aa9c165db8d54';
+  String _apiKey = '';
   final _baseUrl = "https://api.themoviedb.org/3";
+
+  MoviesRepository() {
+    ConfigLoader().load().then((config) => _apiKey = config.apiKey);
+  }
 
   Future<List<Movie>> getPopularMovies() async {
     final result = await _fetchResults('popular');
