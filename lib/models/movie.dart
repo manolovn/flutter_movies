@@ -8,7 +8,6 @@ class Movie {
 
     bool adult;
     String backdrop_path;
-    String belongs_to_collection;
     num budget;
     List genres;
     String homepage;
